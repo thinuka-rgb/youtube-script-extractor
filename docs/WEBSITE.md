@@ -34,7 +34,7 @@ Open **http://127.0.0.1:8000**. The local web page connects to the same Python s
 - `POST /api/transcript`: accepts `{"url": "YOUTUBE_LINK", "language": ""}`; returns text, SRT, JSON, language, and caption type. An empty language prefers English then falls back to an available track.
 - `GET /api/health`: liveness response, not an extraction test.
 - Only parsed YouTube video IDs reach the caption client. Arbitrary submitted URLs are not fetched.
-- The app keeps at most 128 successful results in an in-memory cache, reusing them for up to ten minutes. Nothing is written to a transcript database or disk. Hosting providers may retain logs.
+- The app keeps at most 128 successful results in an in-memory cache, reusing them for up to ten minutes. Entries remain in memory until replaced or the server restarts. Nothing is written to a transcript database or disk. Hosting providers may retain logs.
 - Basic per-client limits allow six extraction requests per minute; four upstream operations may run concurrently. Limits and cache are per process, so the deployment uses one worker. These are hobby-service protections, not a distributed abuse-prevention system. Behind a proxy, configure trusted proxy handling for your host so client addresses are interpreted correctly; never trust arbitrary forwarded headers from the public internet.
 - `ALLOWED_ORIGINS` is a comma-separated CORS allowlist. Default: `https://thinuka-rgb.github.io`. CORS controls browsers; it is not authentication.
 
