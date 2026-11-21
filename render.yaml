@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: youtube-script-extractor
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements-web.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.14
+      - key: ALLOWED_ORIGINS
+        value: https://thinuka-rgb.github.io

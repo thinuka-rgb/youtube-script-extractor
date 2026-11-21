@@ -17,6 +17,8 @@
 
 ---
 
+**Website:** [Open the web interface](https://thinuka-rgb.github.io/youtube-script-extractor/) · [Hosting setup and current connection status](docs/WEBSITE.md). The web interface needs a connected Python backend; if it shows “Website preview,” online extraction is not enabled yet.
+
 > **What “script” means here:** the video's available caption transcript, not the creator's original writing document. This tool supports **YouTube links**, not every video website. Missing captions, restrictions, or YouTube request blocking can prevent extraction. It does not transcribe audio.
 
 ## Start here
@@ -153,9 +155,10 @@ docs/AI-GUIDE.md        Attach-to-AI walkthrough and copyable prompts
 tests/                 Offline CLI and caption handling tests
 ```
 
-To run the offline checks after installing the dependency:
+To run the offline checks (including the optional web server):
 
 ```sh
+python -m pip install -r requirements-test.txt
 python -m unittest discover -s tests -v
 ```
 
